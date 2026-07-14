@@ -1,12 +1,8 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react';
-import { supabase } from '../lib/supabase';
-import type { Session } from '@supabase/supabase-js';
 
 type AppContextType = {
   darkMode: boolean;
   toggleDarkMode: () => void;
-  session: Session | null;
-  setSession: (s: Session | null) => void;
   route: string;
   navigate: (r: string) => void;
 };
@@ -19,23 +15,12 @@ export function AppProvider({ children }: { children: ReactNode }) {
     if (stored !== null) return stored === 'true';
     return window.matchMedia('(prefers-color-scheme: dark)').matches;
   });
-  const [session, setSession] = useState<Session | null>(null);
   const [route, setRoute] = useState(() => window.location.hash.slice(1) || '/');
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data }) => setSession(data.session));
-
-    const { data: authListener } = supabase.auth.onAuthStateChange((_event, sess) => {
-      setSession(sess);
-    });
-
     const onHashChange = () => setRoute(window.location.hash.slice(1) || '/');
     window.addEventListener('hashchange', onHashChange);
-
-    return () => {
-      authListener.subscription.unsubscribe();
-      window.removeEventListener('hashchange', onHashChange);
-    };
+    return () => window.removeEventListener('hashchange', onHashChange);
   }, []);
 
   useEffect(() => {
@@ -57,8 +42,6 @@ export function AppProvider({ children }: { children: ReactNode }) {
       value={{
         darkMode,
         toggleDarkMode: () => setDarkMode((d) => !d),
-        session,
-        setSession,
         route,
         navigate,
       }}

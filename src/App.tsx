@@ -11,13 +11,11 @@ import GalleryPage from './pages/GalleryPage';
 import FAQPage from './pages/FAQPage';
 import BookingPage from './pages/BookingPage';
 import ContactPage from './pages/ContactPage';
-import AdminPage from './pages/AdminPage';
 
 function Router() {
   const { route } = useApp();
   const cleanRoute = route.split('?')[0];
 
-  // Product detail
   if (cleanRoute.startsWith('/products/')) {
     const slug = cleanRoute.replace('/products/', '');
     return <ProductDetailPage slug={slug} />;
@@ -40,8 +38,6 @@ function Router() {
       return <BookingPage />;
     case '/contact':
       return <ContactPage />;
-    case '/admin':
-      return <AdminPage />;
     default:
       return <HomePage />;
   }

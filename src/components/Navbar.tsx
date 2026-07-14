@@ -64,10 +64,6 @@ export default function Navbar() {
             <button onClick={() => go('/booking')} className="hover:text-primary-200 transition-colors">
               Book a Repair
             </button>
-            <span className="text-primary-700">|</span>
-            <button onClick={() => go('/admin')} className="hover:text-primary-200 transition-colors">
-              Admin Login
-            </button>
           </div>
         </div>
       </div>
@@ -181,9 +177,6 @@ export default function Navbar() {
                 ))}
                 <button onClick={() => go('/booking')} className="btn-primary text-sm mt-2">
                   Book a Repair
-                </button>
-                <button onClick={() => go('/admin')} className="btn-outline text-sm mt-2">
-                  Admin Login
                 </button>
               </div>
             </div>

@@ -117,11 +117,3 @@ export type NewsletterSub = {
   email: string;
   created_at: string;
 };
-
-export async function checkIsAdmin(): Promise<boolean> {
-  const { data: userData } = await supabase.auth.getUser();
-  if (!userData.user) return false;
-  const { data, error } = await supabase.rpc('is_admin');
-  if (error || data === null) return false;
-  return data === true;
-}
