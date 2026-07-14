@@ -45,7 +45,7 @@ export default function AboutPage() {
       <section className="relative py-20 md:py-28 overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src="https://images.pexels.com/photos/4109637/pexels-photo-4109637.jpeg?auto=compress&cs=tinysrgb&w=1920"
+            src="https://images.pexels.com/photos/5463575/pexels-photo-5463575.jpeg?auto=compress&cs=tinysrgb&w=1920"
             alt="About"
             className="w-full h-full object-cover"
           />
@@ -108,14 +108,14 @@ export default function AboutPage() {
             <div className="grid grid-cols-2 gap-4">
               <div className="rounded-2xl overflow-hidden shadow-lg aspect-[3/4]">
                 <img
-                  src="https://images.pexels.com/photos/4109637/pexels-photo-4109637.jpeg?auto=compress&cs=tinysrgb&w=600"
+                  src="https://images.pexels.com/photos/3964617/pexels-photo-3964617.jpeg?auto=compress&cs=tinysrgb&w=600"
                   alt="Our work"
                   className="w-full h-full object-cover"
                 />
               </div>
               <div className="rounded-2xl overflow-hidden shadow-lg aspect-[3/4] mt-8">
                 <img
-                  src="https://images.pexels.com/photos/4109637/pexels-photo-4109638.jpeg?auto=compress&cs=tinysrgb&w=600"
+                  src="https://images.pexels.com/photos/6996088/pexels-photo-6996088.jpeg?auto=compress&cs=tinysrgb&w=600"
                   alt="Our work"
                   className="w-full h-full object-cover"
                 />

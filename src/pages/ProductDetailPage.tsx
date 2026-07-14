@@ -69,7 +69,7 @@ export default function ProductDetailPage({ slug }: { slug: string }) {
     );
   }
 
-  const images = product.images.length > 0 ? product.images : ['https://images.pexels.com/photos/4109637/pexels-photo-4109637.jpeg?auto=compress&cs=tinysrgb&w=800'];
+  const images = product.images.length > 0 ? product.images : ['https://images.pexels.com/photos/3926542/pexels-photo-3926542.jpeg?auto=compress&cs=tinysrgb&w=800'];
 
   const nextImage = () => setActiveImage((i) => (i + 1) % images.length);
   const prevImage = () => setActiveImage((i) => (i - 1 + images.length) % images.length);

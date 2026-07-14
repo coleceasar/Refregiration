@@ -88,7 +88,7 @@ export default function HomePage() {
       <section className="relative min-h-[600px] md:min-h-[680px] flex items-center overflow-hidden">
         <div className="absolute inset-0">
           <img
-            src={banner?.image || 'https://images.pexels.com/photos/4109637/pexels-photo-4109637.jpeg?auto=compress&cs=tinysrgb&w=1920'}
+            src={banner?.image || 'https://images.pexels.com/photos/3926542/pexels-photo-3926542.jpeg?auto=compress&cs=tinysrgb&w=1920'}
             alt="Refrigeration and cooling"
             className="w-full h-full object-cover"
           />
@@ -150,7 +150,7 @@ export default function HomePage() {
             <div className="relative">
               <div className="rounded-2xl overflow-hidden shadow-2xl">
                 <img
-                  src="https://images.pexels.com/photos/4109637/pexels-photo-4109637.jpeg?auto=compress&cs=tinysrgb&w=800"
+                  src="https://images.pexels.com/photos/5463575/pexels-photo-5463575.jpeg?auto=compress&cs=tinysrgb&w=800"
                   alt="About Wapendwa"
                   className="w-full h-[400px] object-cover"
                 />
@@ -237,7 +237,7 @@ export default function HomePage() {
               <div key={product.id} className="card-hover overflow-hidden group flex flex-col">
                 <div className="relative h-52 overflow-hidden bg-gray-100 dark:bg-gray-800">
                   <img
-                    src={product.images[0] || 'https://images.pexels.com/photos/4109637/pexels-photo-4109637.jpeg?auto=compress&cs=tinysrgb&w=800'}
+                    src={product.images[0] || 'https://images.pexels.com/photos/3926542/pexels-photo-3926542.jpeg?auto=compress&cs=tinysrgb&w=800'}
                     alt={product.name}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />

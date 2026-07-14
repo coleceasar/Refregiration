@@ -172,7 +172,7 @@ export default function ProductsPage() {
               <div key={product.id} className="card-hover overflow-hidden group flex flex-col">
                 <div className="relative h-52 overflow-hidden bg-gray-100 dark:bg-gray-800 cursor-pointer" onClick={() => navigate(`/products/${product.slug}`)}>
                   <img
-                    src={product.images[0] || 'https://images.pexels.com/photos/4109637/pexels-photo-4109637.jpeg?auto=compress&cs=tinysrgb&w=800'}
+                    src={product.images[0] || 'https://images.pexels.com/photos/3926542/pexels-photo-3926542.jpeg?auto=compress&cs=tinysrgb&w=800'}
                     alt={product.name}
                     className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
