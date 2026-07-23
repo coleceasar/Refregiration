@@ -2,7 +2,6 @@ import { useEffect, useState, useMemo } from 'react';
 import { useApp } from '../context/AppContext';
 import { supabase } from '../lib/supabase';
 import type { Product, Category } from '../lib/supabase';
-import { formatPrice } from '../components/ui';
 import { Search, SlidersHorizontal, X, Package } from 'lucide-react';
 
 export default function ProductsPage() {
@@ -53,8 +52,6 @@ export default function ProductsPage() {
           p.brand?.toLowerCase().includes(q)
       );
     }
-    if (sortBy === 'price-low') result.sort((a, b) => a.price - b.price);
-    if (sortBy === 'price-high') result.sort((a, b) => b.price - a.price);
     if (sortBy === 'name') result.sort((a, b) => a.name.localeCompare(b.name));
     return result;
   }, [products, selectedCategory, searchQuery, sortBy]);
@@ -88,8 +85,6 @@ export default function ProductsPage() {
             className="input md:w-48"
           >
             <option value="default">Sort by: Default</option>
-            <option value="price-low">Price: Low to High</option>
-            <option value="price-high">Price: High to Low</option>
             <option value="name">Name: A to Z</option>
           </select>
           <button
@@ -190,7 +185,6 @@ export default function ProductsPage() {
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-1 line-clamp-2">{product.name}</h3>
                   <p className="text-sm text-gray-500 dark:text-gray-400 mb-3 line-clamp-2">{product.description}</p>
                   <div className="mt-auto">
-                    <div className="text-lg font-bold text-primary-600 dark:text-primary-400 mb-3">{formatPrice(product.price)}</div>
                     <div className="flex gap-2">
                       <button
                         onClick={() => navigate(`/products/${product.slug}`)}

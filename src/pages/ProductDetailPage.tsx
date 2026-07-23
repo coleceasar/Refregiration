@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useApp } from '../context/AppContext';
 import { supabase } from '../lib/supabase';
 import type { Product } from '../lib/supabase';
-import { formatPrice } from '../components/ui';
+
 import {
   ArrowLeft,
   CheckCircle2,
@@ -158,7 +158,6 @@ export default function ProductDetailPage({ slug }: { slug: string }) {
               <p className="text-gray-500 dark:text-gray-400 mb-4">Brand: <span className="font-medium text-gray-700 dark:text-gray-300">{product.brand}</span></p>
             )}
             <div className="flex items-center gap-4 mb-6">
-              <span className="text-3xl font-bold text-primary-600 dark:text-primary-400">{formatPrice(product.price)}</span>
               <span className={`badge ${product.availability === 'In Stock' ? 'bg-success-100 text-success-700 dark:bg-success-900/30 dark:text-success-400' : 'bg-warning-100 text-warning-700 dark:bg-warning-900/30 dark:text-warning-400'}`}>
                 {product.availability}
               </span>

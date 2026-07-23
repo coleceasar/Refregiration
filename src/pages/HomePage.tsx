@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useApp } from '../context/AppContext';
 import { supabase } from '../lib/supabase';
-import type { Product, Service, Testimonial, GalleryItem, Banner, FAQ, Category } from '../lib/supabase';
-import { StarRating, SectionHeader, formatPrice } from '../components/ui';
+import type { Product, Service, GalleryItem, Banner, FAQ, Category } from '../lib/supabase';
+import { SectionHeader } from '../components/ui';
 import {
   Snowflake,
   Wrench,
@@ -44,7 +44,7 @@ export default function HomePage() {
   const [banner, setBanner] = useState<Banner | null>(null);
   const [featuredProducts, setFeaturedProducts] = useState<Product[]>([]);
   const [services, setServices] = useState<Service[]>([]);
-  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
+
   const [gallery, setGallery] = useState<GalleryItem[]>([]);
   const [faqs, setFaqs] = useState<FAQ[]>([]);
   const [categories, setCategories] = useState<Category[]>([]);
@@ -52,11 +52,10 @@ export default function HomePage() {
 
   useEffect(() => {
     (async () => {
-      const [b, p, s, t, g, f, c] = await Promise.all([
+      const [b, p, s, g, f, c] = await Promise.all([
         supabase.from('banners').select('*').eq('is_active', true).order('sort_order').limit(1).maybeSingle(),
         supabase.from('products').select('*, category:categories(*)').eq('is_featured', true).order('sort_order').limit(8),
         supabase.from('services').select('*').order('sort_order').limit(12),
-        supabase.from('testimonials').select('*').eq('is_approved', true).order('created_at', { ascending: false }).limit(6),
         supabase.from('gallery').select('*').order('sort_order').limit(8),
         supabase.from('faq').select('*').order('sort_order'),
         supabase.from('categories').select('*').order('sort_order'),
@@ -64,10 +63,9 @@ export default function HomePage() {
       if (b.data) setBanner(b.data);
       if (p.data) setFeaturedProducts(p.data);
       if (s.data) setServices(s.data);
-      if (t.data) setTestimonials(t.data);
       if (g.data) setGallery(g.data);
       if (f.data) setFaqs(f.data);
-      if (c.data) setCategories(c.data);
+      if (c.data) setCategories(c.data as Category[]);
     })();
   }, []);
 
@@ -254,8 +252,7 @@ export default function HomePage() {
                   </span>
                   <h3 className="font-semibold text-gray-900 dark:text-white mb-1 line-clamp-2">{product.name}</h3>
                   <p className="text-sm text-gray-500 dark:text-gray-400 mb-3 line-clamp-2">{product.description}</p>
-                  <div className="mt-auto flex items-center justify-between">
-                    <span className="text-lg font-bold text-primary-600 dark:text-primary-400">{formatPrice(product.price)}</span>
+                  <div className="mt-auto flex items-center justify-end">
                     <button
                       onClick={() => navigate(`/products/${product.slug}`)}
                       className="text-sm font-medium text-primary-600 dark:text-primary-400 hover:underline"
@@ -296,10 +293,7 @@ export default function HomePage() {
                     </div>
                   </div>
                   <p className="text-sm text-gray-500 dark:text-gray-400 mb-4 line-clamp-3 flex-1">{service.description}</p>
-                  <div className="flex items-center justify-between mt-auto">
-                    <span className="text-sm text-gray-500 dark:text-gray-400">
-                      From <span className="font-bold text-primary-600 dark:text-primary-400">{formatPrice(service.estimated_price)}</span>
-                    </span>
+                  <div className="flex items-center justify-end mt-auto">
                     <button onClick={() => navigate('/booking')} className="btn-secondary text-sm py-2 px-4">
                       Book Service
                     </button>
@@ -331,30 +325,6 @@ export default function HomePage() {
                   <div>
                     <span className="text-xs text-primary-300 font-medium">{item.category}</span>
                     <h3 className="text-white font-semibold text-sm">{item.title}</h3>
-                  </div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Testimonials */}
-      <section className="section bg-gray-50 dark:bg-gray-900">
-        <div className="container-custom">
-          <SectionHeader title="What Our Customers Say" subtitle="Real reviews from satisfied clients" />
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {testimonials.map((t) => (
-              <div key={t.id} className="card p-6 flex flex-col">
-                <StarRating rating={t.rating} size="md" />
-                <p className="text-gray-700 dark:text-gray-300 my-4 flex-1 italic">"{t.message}"</p>
-                <div className="flex items-center gap-3 pt-4 border-t border-gray-100 dark:border-gray-800">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary-500 to-secondary-600 flex items-center justify-center text-white font-bold text-sm">
-                    {t.customer_name.charAt(0)}
-                  </div>
-                  <div>
-                    <div className="font-semibold text-gray-900 dark:text-white text-sm">{t.customer_name}</div>
-                    <div className="text-xs text-gray-500 dark:text-gray-400">{t.location}</div>
                   </div>
                 </div>
               </div>

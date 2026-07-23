@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useApp } from '../context/AppContext';
 import { supabase } from '../lib/supabase';
 import type { Service } from '../lib/supabase';
-import { formatPrice, SectionHeader } from '../components/ui';
+import { SectionHeader } from '../components/ui';
 import {
   Snowflake,
   Wrench,
@@ -100,10 +100,7 @@ export default function ServicesPage() {
                       </div>
                     </div>
                     <p className="text-sm text-gray-500 dark:text-gray-400 mb-4 flex-1">{service.description}</p>
-                    <div className="flex items-center justify-between mt-auto pt-4 border-t border-gray-100 dark:border-gray-800">
-                      <span className="text-sm text-gray-500 dark:text-gray-400">
-                        From <span className="font-bold text-primary-600 dark:text-primary-400">{formatPrice(service.estimated_price)}</span>
-                      </span>
+                    <div className="flex items-center justify-end mt-auto pt-4 border-t border-gray-100 dark:border-gray-800">
                       <button onClick={() => navigate('/booking')} className="btn-secondary text-sm py-2 px-4">
                         Book Service
                       </button>
